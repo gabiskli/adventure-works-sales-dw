@@ -195,3 +195,141 @@ sources:
             description: Country or region name.
           - name: MODIFIEDDATE
             description: Date and time the record was last updated.
+
+      - name: customer
+        description: >
+          Customer information. Can be both individuals and stores that resells Adventure Works products.
+          That is why personid and storeid columns will have nulls.
+        columns:
+          - name: CUSTOMERID
+            description: Primary key for the Customers records.
+            tests:
+              - unique
+              - not_null
+          - name: PERSONID
+            description: Foreign key to person table.
+          - name: STOREID
+            description: Foreign key to store table.
+          - name: TERRITORYID
+            description: ID of the territory in which the customer is located.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+            
+      - name: person
+        description: 'Human beings involved with AdventureWorks: employees, customer contacts, and vendor contacts.'
+        columns:
+          - name: BUSINESSENTITYID
+            description: Primary key for Person records.
+            tests:
+              - unique
+              - not_null
+          - name: PERSONTYPE
+            description: >
+              Primary type of person: SC = Store Contact, IN = Individual (retail) customer, 
+              SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact.
+            tests:
+              - accepted_values:
+                  values:
+                    - "SC"
+                    - "IN"
+                    - "SP"
+                    - "EM"
+                    - "VC"
+                    - "GC"
+          - name: NAMESTYLE
+            description: >
+              0 = The data in FirstName and LastName are stored in western style (firs name, last name) order. 
+              1 = Eastern style (last name, first name) order.
+            tests:
+              - accepted_values:
+                  values:
+                    - "TRUE"
+                    - "FALSE"
+                  quote: false
+          - name: TITLE
+            description: A courtesy title. For example, Mr. or Ms.
+          - name: FIRSTNAME
+            description: First name of the person.
+          - name: MIDDLENAME
+            description: Middle name or middle initial of the person.
+          - name: LASTNAME
+            description: Last name of the person.
+          - name: SUFFIX
+            description: Surname suffix. For example, Sr. or Jr.
+          - name: EMAILPROMOTION
+            description: >
+              Categorizing people by their wish to receive promotion by email.
+              0 = Contact does not wish to receive e-mail promotions, 
+              1 = Contact does wish to receive e-mail promotions from AdventureWorks, 
+              2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners.
+            tests:
+              - accepted_values:
+                  values:
+                    - "0"
+                    - "1"
+                    - "2"
+                  quote: false
+          - name: ADDITIONALCONTACTINFO
+            description: Additional contact information about the person stored in xml format.
+          - name: DEMOGRAPHICS
+            description: >
+              Personal information such as hobbies, and income collected from online shoppers. 
+              Used for sales analysis.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: store
+        description: Customers (resellers) of Adventure Works products.
+        columns:
+          - name: BUSINESSENTITYID
+            description: Primary key for the store customers records
+            tests:
+              - unique 
+              - not_null
+          - name: NAME
+            description: Name of the store.
+          - name: SALESPERSONID
+            description: ID of the sales person assigned to the customer. Foreign key to salesperson table.
+            tests:
+              - not_null
+          - name: DEMOGRAPHICS
+            description: >
+              Demographic informationg about the store such as the number of employees, 
+              annual sales and store type.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+            
+      - name: salesperson
+        description: Sales representative current information.
+        columns:
+          - name: BUSINESSENTITYID
+            description: Primary key for SalesPerson records.
+            tests:
+              - unique
+              - not_null
+          - name: TERRITORYID
+            description: Territory currently assigned to.
+          - name: SALESQUOTA
+            description: Projected yearly sales.
+          - name: BONUS
+            description: >
+              Bonus due if quota is met.
+              Default: 0.00
+          - name: COMMISSIONPCT
+            description: >
+              Commision percent received per sale.
+              Default: 0.00 
+          - name: SALESYTD
+            description: >
+              Sales total year to date.
+              Default: 0.00
+          - name: SALESLASTYEAR
+            description: >
+              Sales total of previous year.
+              Default: 0.00
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
