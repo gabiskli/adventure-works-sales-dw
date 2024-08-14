@@ -34,3 +34,4 @@ models:
               values:
                 - "true"
                 - "false"
+              quote: false
