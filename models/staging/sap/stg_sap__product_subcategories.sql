@@ -3,7 +3,7 @@ with
         select 
             cast(PRODUCTSUBCATEGORYID as int) as pk_product_subcategory
             , cast(PRODUCTCATEGORYID as int) as fk_product_category
-            , cast(NAME as varchar) as subcategory_name
+            , cast(NAME as string) as subcategory_name
             --MODIFIEDDATE will not be needed
             --ROWGUID 
         from {{ source('sap', 'productsubcategory') }}

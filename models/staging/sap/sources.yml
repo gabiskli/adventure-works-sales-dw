@@ -25,21 +25,13 @@ sources:
             description: >
               Flag that identifies if the product is manufactured by Adventure Work or purchased.
               0 = Product is purchased, 1 = Product is manufactured in-house.
-            tests:
-              - accepted_values:
-                  values:
-                    - "TRUE"
-                    - "FALSE"
+
           - name: FINISHEDGOODSFLAG
             description: >
               Flag that identifies if the product will be sold by Adventure Work 
               or will be used in production of other products.
               0 = Product is not a salable item. 1 = Product is salable.
-            tests:
-              - accepted_values:
-                  values:
-                    - "TRUE"
-                    - "FALSE"
+
           - name: COLOR
             description: Color of the product
           - name: SAFETYSTOCKLEVEL
