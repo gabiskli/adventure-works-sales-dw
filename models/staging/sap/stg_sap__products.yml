@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_sap__products
+    description: Staging table of products.
+    columns:
+      - name: is_discontinued
+        description: Flag that indicates if the product is still being sold.
+        tests:
+          - not_null

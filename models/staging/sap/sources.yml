@@ -1,0 +1,118 @@
+version: 2
+
+sources:
+  - name: sap
+    description: This is the ERP sources from adventure works. With data from sales, products, HR, and others.
+    database: adventure-works-432501 
+    schema: sap_adw
+    tables:
+      - name: product
+        description: Table with product data. Products sold or used in the manfacturing of sold products.
+        columns:
+          - name: PRODUCTID
+            description: Primary key for product records.
+            tests:
+              - unique
+              - not_null
+          - name: NAME
+            description: Name of the product
+          - name: PRODUCTNUMBER
+            description: Unique product identification number.
+            tests:
+              - unique 
+              - not_null
+          - name: MAKEFLAG
+            description: >
+              Flag that identifies if the product is manufactured by Adventure Work or purchased.
+              0 = Product is purchased, 1 = Product is manufactured in-house.
+            tests:
+              - accepted_values:
+                  values:
+                    - "TRUE"
+                    - "FALSE"
+          - name: FINISHEDGOODSFLAG
+            description: >
+              Flag that identifies if the product will be sold by Adventure Work 
+              or will be used in production of other products.
+              0 = Product is not a salable item. 1 = Product is salable.
+            tests:
+              - accepted_values:
+                  values:
+                    - "TRUE"
+                    - "FALSE"
+          - name: COLOR
+            description: Color of the product
+          - name: SAFETYSTOCKLEVEL
+            description: Minimum inventory quantity.
+          - name: REORDERPOINT
+            description: Inventory level that triggers a purchase order or work order.
+          - name: STANDARDCOST
+            description: Standard cost of the product.
+          - name: LISTPRICE
+            description: Selling price.
+          - name: SIZE
+            description: Product size.
+          - name: SIZEUNITMEASURECODE
+            description: Unit of measure for Size column.
+          - name: WEIGHTUNITMEASURECODE
+            description: Unit of measure for Weight column
+          - name: WEIGHT
+            description: Product weight.
+          - name: DAYSTOMANUFACTURE
+            description: Number of days required to manufacture the product.
+          - name: PRODUCTLINE
+            description: >
+              Product line.
+              R = Road, M = Mountain, T = Touring, S = Standard.
+          - name: CLASS
+            description: >
+                Class of the product
+                H = High, M = Medium, L = Low
+          - name: STYLE
+            description: >
+              Style of the product.
+              W = Womens, M = Mens, U = Universal
+          - name: PRODUCTSUBCATEGORYID
+            description: Product is a member of this product subcategory. Foreign key to productsubcategory table.
+          - name: PRODUCTMODELID
+            description: Product is a member of this product model. Foreign key to productmodel table
+          - name: SELLSTARTDATE
+            description: Date the product was available for sale.
+          - name: SELLENDDATE
+            description: Date the product was no longer available for sale.
+          - name: DISCONTINUEDDATE
+            description: Date the product was discontinued.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+      - name: productsubcategory
+        description:  Products subcategories.
+        columns:
+          - name: PRODUCTSUBCATEGORYID
+            description: Primary key for Product Subcategory records.
+            tests:
+              - unique
+              - not_null
+          - name: PRODUCTCATEGORYID
+            description: Product category identification number. Foreign key to productcategory table.
+            tests:
+              - not_null
+          - name: NAME
+            description: Subcategory description.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: productcategory
+        description: High-level product categorization.
+        columns:
+          - name: productcategoryid
+            description: Primary key for Product Category records
+            tests:
+              - unique 
+              - not_null
+          - name: NAME
+            description: Category description.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
