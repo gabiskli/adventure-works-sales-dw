@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: >
+      Adventure Works customer dimension table. 
+    columns:
+      - name: PK_CUSTOMER
+        description: Primary key from the product dimension table.
+          - unique
+          - not_null
+              
+      - name: CUSTOMER_NAME
+        description: >
+          Customer name. 
+          There are two type of customer, stores and people. And there is people associated with stores. 
+        tests:
+          - not_null
+      - name: CUSTOMER_TYPE
+        description: Customer type, it must be either "Person" or "Store".
+        tests:
+          - accepted_values:
+              values:
+                - "Person"
+                - "Store"
