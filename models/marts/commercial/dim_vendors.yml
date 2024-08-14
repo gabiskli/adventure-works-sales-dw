@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: dim_vendors
+    description: >
+      Adventure Works sales person (vendors) dimension table.
+    columns:
+      - name: PK_VENDOR
+        description: Primary key from the vendors dimension table.
+        tests:
+          - unique
+          - not_null
+              
+      - name: VENDOR_NAME
+        description: Name of the vendor.
