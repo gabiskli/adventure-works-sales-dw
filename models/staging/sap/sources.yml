@@ -108,3 +108,77 @@ sources:
           - name: ROWGUID
           - name: MODIFIEDDATE
             description: Date and time the record was last updated.
+      - name: address
+        description: Street address information for customers, employees, and vendors.
+        columns:
+          - name: ADDRESSID
+            description: Primary key for Address records.
+            tests:
+              - unique
+              - not_null
+          - name: ADDRESSLINE1
+            description: First street address line.
+          - name: ADDRESSLINE2
+            description: Second street address line.
+          - name: CITY
+            description: Name of the city.
+          - name: STATEPROVINCEID
+            description: Unique identification number for the state or province. Foreign key to stateprovince table.
+            tests:
+              - not_null
+          - name: POSTALCODE
+            description: Postal code for the street address.
+          - name: SPATIALLOCATION
+            description: Latitude and longitude of this address, saved in geographical type.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated
+
+      - name: stateprovince
+        description: State and province lookup table
+        columns:
+          - name: STATEPROVINCEID
+            description: Primary key for StateProvince records
+            tests:
+              - unique 
+              - not_null
+          - name: STATEPROVINCECODE
+            description: ISO standard state or province code.
+            tests:
+              - unique 
+              - not_null
+          - name: COUNTRYREGIONCODE
+            description: ISO standard country or region code. Foreign key to countryregion table.
+            tests:
+              - not_null
+          - name: ISONLYSTATEPROVINCEFLAG
+            description: >
+              Flag that indicated if the state code exists.
+              0 = StateProvinceCode exists. 1 = StateProvinceCode unavailable, using CountryRegionCode.
+            tests:
+              - accepted_values:
+                  values:
+                    - TRUE
+                    - FALSE
+          - name: NAME
+            description: State or province description.
+          - name: TERRITORYID
+            description: ID of the territory in which the state or province is located.
+            tests:
+              - not_null
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: countryregion
+        description: Lookup table containing the ISO standard codes for countries and regions.
+        columns:
+          - name: COUNTRYREGIONCODE
+            description: ISO standard code for countries and regions. And primary key of the table.
+            tests:
+              - unique 
+              - not_null
+          - name: NAME
+            description: Country or region name.
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
