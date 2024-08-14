@@ -9,8 +9,8 @@ with
                 when cast(SALESPERSONID as int) is null then 0
                 else cast(SALESPERSONID as int)
             end as fk_vendor
-            , cast(ORDERDATE as date) as dt_order
-            , cast(DUEDATE as date) as dt_due
+            , cast(cast(ORDERDATE as datetime) as date) as dt_order
+            , cast(cast(DUEDATE as datetime) as date) as dt_due
             , cast(SUBTOTAL as numeric) as gross_profit
             , cast(TAXAMT as numeric) as tax_amount
             , cast(FREIGHT as numeric) as freight
