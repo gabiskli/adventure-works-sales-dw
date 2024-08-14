@@ -333,3 +333,171 @@ sources:
           - name: ROWGUID
           - name: MODIFIEDDATE
             description: Date and time the record was last updated.
+
+      - name: salesorderheader
+        description: General sales order information.
+        columns:
+          - name: SALESORDERID
+            description: Primary key for the sales order records
+            tests:
+              - unique 
+              - not_null
+          - name: REVISIONNUMBER
+            description: Incremental number to track changes to the sales order over time.
+            tests:
+              - not_null
+          - name: ORDERDATE
+            description: Dates the sales order was created.
+            tests:
+              - not_null
+          - name: DUEDATE
+            description: Date the order is due to the customer.
+          - name: SHIPDATE
+            description: Date the order was shipped to the customer.
+          - name: STATUS
+            description: >
+              Order current status. 
+              1 = In process; 2 = Approved; 3 = Backordered; 
+              4 = Rejected;  5 = Shipped; 6 = Cancelled
+            tests:
+              - accepted_values:
+                  values:
+                    - "1"
+                    - "2"
+                    - "3"
+                    - "4"
+                    - "5"
+                    - "6"
+                  quote: false
+          - name: ONLINEORDERFLAG
+            description: >
+              Flag that indicates which kind of person placed the order.
+              0 = Order placed by sales person. 1 = Order placed online by customer
+            tests:
+              - accepted_values:
+                  values:
+                    - "FALSE"
+                    - "TRUE"
+                  quote: false
+          - name: PURCHASEORDERNUMBER
+            description: Unique sales order identification number.
+          - name: ACCOUNTNUMBER
+            description: Financial accounting number reference.
+          - name: CUSTOMERID
+            description: Customer identification number. Foreign key to customer table.
+          - name: SALESPERSONID
+            description: Sales person who created the sales order. Foreign key to salesperson table.
+          - name: TERRITORYID
+            description: Territory in which the sale was made.
+          - name: BILLTOADDRESSID
+            description: Customer billing address. Foreign key to address table.
+          - name: SHIPTOADDRESSID
+            description: Customer shipping address. Foreign key to address table.
+          - name: SHIPMETHODID
+            description: Shipping method. Foreign key to shipmethod table.
+          - name: CREDITCARDID
+            description: Credit card identification number. Foreign key to creditcard id.
+          - name: CREDITCARDAPPROVALCODE
+            description: Approval code provided by the credit card company.
+          - name: CURRENCYRATEID
+            description: Currency exchange rate used. Foreign key to currencyrate table.
+          - name: SUBTOTAL
+            description: >
+              Sales subtotal. 
+              Computed as SUM(quanity * unitprice * (1- discount))for the appropriate SalesOrderID.
+          - name: TAXAMT
+            description: Tax amount.
+          - name: FREIGHT
+            description: Shipping cost.
+          - name: TOTALDUE
+            description: Total due from customer. Computed as Subtotal + TaxAmt + Freight.
+          - name: COMMENT
+            description: Sales representative comments.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: salesorderdetail
+        description: Individual products associated with a specific sales order.
+        columns:
+          - name: SALESORDERDETAILID
+            description: Primary key for the sales order detail records.
+            tests:
+              - unique 
+              - not_null
+          - name: CARRIERTRACKINGNUMBER
+            description: Shipment tracking number supplied by the shipper.
+          - name: ORDERQTY
+            description: Quantity ordered per product.
+          - name: PRODUCTID
+            description: Product sold to customer. Foreign key to product table.
+            tests:
+              - not_null
+          - name: SPECIALOFFERID
+            description: Promotional code. Foreign key to speccialoffer table.
+            tests:
+              - not_null
+          - name: UNITPRICE
+            description: Selling price of a single product.
+          - name: UNITPRICEDISCOUNT
+            description: Discount amount.
+          - name: ROWGUID
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: salesorderheadersalesreason
+        description: Cross-reference table mapping sales orders to sales reason codes.
+        columns:
+          - name: SALESORDERID
+            description: Foreign key for the sales order records.
+          - name: SALESREASONID
+            description: Foreign key to sales reason records.
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: salesreason
+        description: Lookup table of customer purchase reasons.
+        columns:
+          - name: SALESREASONID
+            description: Primary key for the sales reason records
+            tests:
+              - unique
+              - not_null
+          - name: NAME 
+            description: Sales reason description.
+            tests:
+              - not_null
+          - name: REASONTYPE 
+            description: Category the sales reason belongs to.
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+
+      - name: creditcard
+        description: Customer credit card information.
+        columns:
+          - name: CREDITCARDID
+            description: Primary key for the credit card records.
+            tests:
+              - unique 
+              - not_null
+          - name: CARDTYPE
+            description: Credit card name.
+          - name: CARDNUMBER
+            description: Credit card number.
+            tests:
+              - not_null
+          - name: EXPMONTH
+            description: Credit card expiration month.
+          - name: EXPYEAR
+            description: Credit card expiration year.
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
+      - name: personcreditcard
+        description: Cross-reference table mapping people to their credit card information in the CreditCard table.
+        columns:
+          - name: BUSINESSENTITYID
+            description: Business entity identification number.
+          - name: CREDITCARDID
+            description: Credit card identification number.
+          - name: MODIFIEDDATE
+            description: Date and time the record was last updated.
