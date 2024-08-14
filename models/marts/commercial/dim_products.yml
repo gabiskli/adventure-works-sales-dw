@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: >
+      Adventure Works product dimension table. 
+      There is a categorization of discotinued products in the column is_discontinued.
+      And the category name column was filled with "Other" when there were null values.
+    columns:
+      - name: PK_PRODUCT
+        description: Primary key from the product dimension table.
+          - unique
+          - not_null
+              
+      - name: PRODUCT_NAME
+        description: Product name.
+        tests:
+          - not_null
+      
+      - name: PRODUCT_CATEGORY
+        description: Product category name.
+        tests:
+          - not_null:
+              config:
+                severity: warn
+
+      - name: IS_DISCONTINUED
+        description: Flag that indicates if the product is still being sold.
+        tests:
+          - not_null:
+              config:
+                severity: warn
+          - accepted_values:
+              values:
+                - "true"
+                - "false"
