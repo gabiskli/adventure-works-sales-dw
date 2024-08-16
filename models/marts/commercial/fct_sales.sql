@@ -29,6 +29,7 @@ with
             , int_sales.FK_CUSTOMER
             , int_sales.FK_TERRITORY
             , int_sales.FK_PRODUCT
+            , int_sales.fk_vendor
             , int_sales.DT_ORDER
             , int_sales.DT_DUE
             , int_sales.STATUS
@@ -54,4 +55,3 @@ with
     )
 select *
 from joined
-where reason_name is null

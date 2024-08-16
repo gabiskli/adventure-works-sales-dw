@@ -17,6 +17,7 @@ with
             , orders.PK_ORDER as fk_order
             , orders.FK_CUSTOMER
             , orders.FK_TERRITORY
+            , orders.fk_vendor
             , order_details.FK_PRODUCT
             , orders.FK_CARD
             , orders.DT_ORDER
@@ -42,6 +43,7 @@ with
             , FK_CUSTOMER
             , FK_TERRITORY
             , FK_PRODUCT
+            , fk_vendor
             , DT_ORDER
             , DT_DUE
             , STATUS
@@ -65,7 +67,7 @@ with
                 * (1 - discount) 
                 * quantity)
                 + freight / count(*) over (partition by fk_order)
-                + tax_amount / count(*) over (partition by fk_order) as numeric)
+                + tax_amount * unit_price * quantity / sum(unit_price * quantity) over (partition by fk_order) as numeric)
             as sales_taxes_freight
             , sum(unit_price * (1 - discount) * quantity) over (partition by fk_order) 
             / count(*) over (partition by fk_order) 
