@@ -67,7 +67,7 @@ with
                 * (1 - discount) 
                 * quantity)
                 + freight / count(*) over (partition by fk_order)
-                + tax_amount * unit_price * quantity / sum(unit_price * quantity) over (partition by fk_order) as numeric)
+                + (tax_amount * unit_price * quantity / sum(unit_price * quantity) over (partition by fk_order)) as numeric)
             as sales_taxes_freight
             , sum(unit_price * (1 - discount) * quantity) over (partition by fk_order) 
             / count(*) over (partition by fk_order) 
