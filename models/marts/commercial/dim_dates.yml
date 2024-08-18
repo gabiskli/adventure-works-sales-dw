@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: >
+      Adventure Works dates dimension table created with dbt_date package.
+    columns:
+      - name: PK_DATE
+        description: >
+          Primary key ofthe dates dimension table. 
+          Dates range for 2011-01-01 and 2014-31-12 that are the years where there are sales in Adventure Works.
+
+      - name: DAY_OF_WEEK_NUMBER
+        description: >
+          Number that represents the day of week.
+          Monday = 1 and Sunday = 7
+          
+      - name: DAY_OF_WEEK
+        description: Name of the day of week in English.
+
+      - name: DAY_OF_WEEK_SHORT
+        description: Short name of the day of week in English.
+
+      - name: DAY_OF_MONTH
+        description: Number that represents the day of the month that dates represent.
+
+      - name: DAY_OF_YEAR
+        description: Number that represents the day of the year that dates represent.
+
+      - name: WEEK_START_DATE
+        description: Date that corresponds to the begining of the week of the specific pk_date.
+
+      - name: WEEK_END_SATE
+        description: Date that corresponds to the end of the week of the specific pk_date.
+
+      - name: MONTH_OF_YEAR
+        description: Number that represents which is the month of the year.
+
+      - name: MONTH_NAME
+        description: Name of the month
+
+      - name: MONTH_NAME_SHORT
+        description: Short name of the month.
+
+      - name: YEAR_NUMBER
+        description: Number of the year.
