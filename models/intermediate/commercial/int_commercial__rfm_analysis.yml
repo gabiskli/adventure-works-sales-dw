@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: int_commercial__rfm_analysis
+    description: >
+      An intermediate table to help in calculation of the customer RFM analysis 
+      done for customer categorization.
+      Customers are categorized with a score fore recency, frequency, and monetary value spend.
+      These categories are done to facilitate customer analysis of commercial operational team.
+    columns:
+      - name: fk_customer
+        description: Customer identification
+
+      - name: rfm_score
+        description: >
+          Calculated concatenating recency, frequency and monetary value scores.
+          Each score is calculated by dividing the data into 5 groups.
+          For recency: the greater the score more recently hase the customer bought.
+          For frequency: the greater the score more often the customer buys.
+          For monetary value: the greater the score more has the customer spend.
+          
+      - name: rfm_segment
+        description: >
+          Based on the "rfm_score" the customers have been segmented in the following way:
+          'High value': customers with rfm_score equal to 555
+          'Core': customer with rfm scores equal to: 34X, 35X, 44X, 45X, 54X, 551, 552, 553, 554
+          'New clients': customer with rfm score equal to: 51X, 52X
+          'Promising': customers with rfm score equal to: 33X 43X, 53X
+          'Need attention': customer with rfm score equal to: 24X, 25X
+          'Lost customer': customer with rfm score equal to: 1XX
+          'General': customers that don't fit other categories.
+          Where X are going from 1 to 5.
+        
