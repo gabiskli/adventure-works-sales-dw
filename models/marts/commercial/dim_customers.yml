@@ -16,6 +16,7 @@ models:
           There are two type of customer, stores and people. And there is people associated with stores. 
         tests:
           - not_null
+
       - name: CUSTOMER_TYPE
         description: Customer type, it must be either "Person" or "Store".
         tests:
@@ -23,3 +24,6 @@ models:
               values:
                 - "Person"
                 - "Store"
+                
+      - name: RFM_SEGMENT
+        description: Customer categorization acording to the RFM analysis. 
