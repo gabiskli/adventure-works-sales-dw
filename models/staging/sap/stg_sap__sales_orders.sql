@@ -1,20 +1,18 @@
 with 
     src_sales_orders as (
         select
-            cast(SALESORDERID as int) as pk_order
-            , cast(BILLTOADDRESSID as int) as fk_territory
-            , cast(CREDITCARDID as int) as fk_card
-            , cast(CUSTOMERID as int) as fk_customer
+            cast(salesorderid as int) as pk_order
+            , cast(billtoaddressid as int) as fk_territory
+            , cast(creditcardid as int) as fk_card
+            , cast(customerid as int) as fk_customer
             , case
-                when cast(SALESPERSONID as int) is null then 0
-                else cast(SALESPERSONID as int)
+                when cast(salespersonid as int) is null then 0
+                else cast(salespersonid as int)
             end as fk_vendor
-            , cast(cast(ORDERDATE as datetime) as date) as dt_order
-            , cast(cast(DUEDATE as datetime) as date) as dt_due
-            , cast(SUBTOTAL as numeric) as gross_profit
-            , cast(TAXAMT as numeric) as tax_amount
-            , cast(FREIGHT as numeric) as freight
-            , cast(TOTALDUE as numeric) as net_profit
+            , cast(cast(orderdate as datetime) as date) as dt_order
+            , cast(cast(duedate as datetime) as date) as dt_due
+            , cast(taxamt as numeric) as tax_amount
+            , cast(freight as numeric) as freight
             , case
                 when status = 1 then 'In progress'
                 when status = 2 then 'Approved'
@@ -25,8 +23,8 @@ with
                 else null
             end as status
             , case 
-                when ONLINEORDERFLAG = true then 'Online'
-                when ONLINEORDERFLAG = false then 'Vendor'
+                when onlineorderflag = true then 'Online'
+                when onlineorderflag = false then 'Vendor'
             end as order_type
             --REVISIONNUMBER
             --SHIPDATE

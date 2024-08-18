@@ -9,10 +9,10 @@ with
     )
     , joined as (
         select
-            reason.PK_REASON
-            , order_reason.FK_ORDER 
-            , reason.REASON_NAME
-            , reason.REASON_TYPE
+            reason.pk_reason
+            , order_reason.fk_order 
+            , reason.reason_name
+            , reason.reason_type
             , row_number() over (partition by order_reason.fk_order order by reason.pk_reason) as num_rows 
         from order_reason
         left join reason
@@ -20,7 +20,7 @@ with
     )
     , deduplicate as (
         select
-            FK_ORDER
+            fk_order
             , case 
                 when pk_reason in (1, 2) then 'Price'
                 when pk_reason in (3,4,7,8) then 'Marketing'

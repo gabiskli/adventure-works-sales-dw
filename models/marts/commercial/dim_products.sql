@@ -13,22 +13,23 @@ with
     )
     , join_categories as (
         select
-            subcategories.PK_PRODUCT_SUBCATEGORY
-            , categories.PK_PRODUCT_CATEGORY as fk_product_category
-            , categories.CATEGORY_NAME
+            subcategories.pk_product_subcategory
+            , categories.pk_product_category as fk_product_category
+            , categories.category_name
         from subcategories
         left join categories
             on subcategories.fk_product_category = categories.pk_product_category
     )
     , joined as (
         select 
-            products.PK_PRODUCT
-            , products.PRODUCT_NAME
+            products.pk_product
+            , products.product_name
             , case
                 when join_categories.category_name is null then 'Other'
                 else join_categories.category_name
             end as product_category
-            , products.IS_DISCONTINUED
+            , products.product_line
+            , products.is_discontinued
         from products
         left join join_categories
             on products.fk_product_subcategory = join_categories.pk_product_subcategory

@@ -1,9 +1,9 @@
 with 
     src_address as (
         select
-            cast(ADDRESSID as int) as pk_address
-            , cast(STATEPROVINCEID as int) as fk_state_code
-            , cast(CITY as string) as city_name
+            cast(addressid as int) as pk_address
+            , cast(stateprovinceid as int) as fk_state_code
+            , cast(city as string) as city_name
             --SPATIALLOCATION this will not be used
             --POSTALCODE 
             --ADDRESSLINE1

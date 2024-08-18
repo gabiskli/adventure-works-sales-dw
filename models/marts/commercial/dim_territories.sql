@@ -13,12 +13,12 @@ with
     )
     , joined as (
         select
-            cities.PK_ADDRESS as pk_territory
-            , cities.CITY_NAME
-            , states.STATE_NAME 
-            , states.STATE_CODE
-            , countries.PK_COUNTRY_CODE as country_code
-            , countries.COUNTRY_NAME
+            cities.pk_address as pk_territory
+            , cities.city_name
+            , states.state_name 
+            , states.state_code
+            , countries.pk_country_code as country_code
+            , countries.country_name
         from cities
         left join states
             on cities.fk_state_code = states.pk_state_code

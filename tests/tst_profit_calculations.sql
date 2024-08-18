@@ -13,15 +13,15 @@
 with
     profit as (
         select
-            prorated_taxes + prorated_freight+ total_sold as total_received
-            , sales_taxes_freight
-        from {{ ref('fct_sales') }}
+            prorated_taxes + prorated_freight+ gross_sales as total_received
+            , total_sales
+        from {{ ref('int_commercial__sales_order_detail') }}
     ) -- Expected that both values are the same
 
 select
     total_received
-    , sales_taxes_freight
+    , total_sales
 from profit
 where 
-    sales_taxes_freight > (1.05 * total_received) 
-    or sales_taxes_freight < (0.95 * total_received)
+    total_sales > (1.05 * total_received) 
+    or total_sales < (0.95 * total_received)
