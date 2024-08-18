@@ -1,12 +1,12 @@
 with 
     src_sales_person as (
         select
-            cast(BUSINESSENTITYID as int) as pk_vendor
-            , cast(SALESQUOTA as numeric) as expected_yearly_sales
-            , cast(BONUS as numeric) as vendor_bonus
-            , cast(COMMISSIONPCT as numeric) as commission_pct
-            , cast(SALESYTD as numeric) as vendor_sales_ytd
-            , cast(SALESLASTYEAR as numeric) as vendor_sales_last_year
+            cast(businessentityid as int) as pk_vendor
+            , cast(salesquota as numeric) as expected_yearly_sales
+            , cast(bonus as numeric) as vendor_bonus
+            , cast(commissionpct as numeric) as commission_pct
+            , cast(salesytd as numeric) as vendor_sales_ytd
+            , cast(saleslastyear as numeric) as vendor_sales_last_year
             --MODIFIEDDATE
             --TERRITORYID
             --ROWGUID

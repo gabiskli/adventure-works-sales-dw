@@ -13,3 +13,8 @@ models:
               
       - name: VENDOR_NAME
         description: Name of the vendor.
+      
+      - name: IS_VENDOR_GOAL_MET
+        description: >
+          Flag that indicated if the specific vendor has met his sales goal yet. 
+          Is done by comparing the "expected_yearly_sales" and "vendor_sales_ytd" columns. 

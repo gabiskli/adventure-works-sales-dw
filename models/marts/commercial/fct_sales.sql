@@ -25,30 +25,29 @@ with
     )
     , joined as (
         select
-            int_sales.PK_ORDER_DETAIL
-            , int_sales.FK_CUSTOMER
-            , int_sales.FK_TERRITORY
-            , int_sales.FK_PRODUCT
+            int_sales.pk_order_detail
+            , int_sales.fk_customer
+            , int_sales.fk_territory
+            , int_sales.fk_product
             , int_sales.fk_vendor
-            , int_sales.DT_ORDER
-            , int_sales.DT_DUE
-            , int_sales.STATUS
+            , int_sales.fk_order
+            , int_sales.dt_order
+            , int_sales.dt_due
+            , int_sales.status
             , int_sales.order_type
-            , int_sales.CARD_TYPE
+            , int_sales.card_type
             , case 
-                when int_sales_reason.REASON_NAME is null then 'Not informed'
-                else int_sales_reason.REASON_NAME
-            end as REASON_NAME
-            , int_sales.UNIT_PRICE
-            , int_sales.DISCOUNT
-            , int_sales.QUANTITY
-            , int_sales.TOTAL_SOLD
-            , int_sales.NET_TOTAL_SOLD
-            , int_sales.PRORATED_FREIGHT
-            , int_sales.PRORATED_TAXES
-            , int_sales.sales_taxes_freight
-            , int_sales.TICKET
-            , int_sales.expected_lead_time
+                when int_sales_reason.reason_name is null then 'Not informed'
+                else int_sales_reason.reason_name
+            end as reason_name
+            , int_sales.unit_price
+            , int_sales.discount
+            , int_sales.quantity
+            , int_sales.gross_sales
+            , int_sales.net_sales
+            , int_sales.total_sales
+            , int_sales.ticket
+            , int_sales.discount_category
         from int_sales
         left join int_sales_reason
             on int_sales.fk_order = int_sales_reason.fk_order

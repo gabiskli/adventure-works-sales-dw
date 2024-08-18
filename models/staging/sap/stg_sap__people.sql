@@ -1,9 +1,9 @@
 with 
     src_people as (
         select 
-            cast(BUSINESSENTITYID as int) as pk_people
-            , cast(PERSONTYPE as string) as person_type
-            , cast(FIRSTNAME as string) || ' ' || cast(LASTNAME as string) as person_name
+            cast(businessentityid as int) as pk_people
+            , cast(persontype as string) as person_type
+            , cast(firstname as string) || ' ' || cast(lastname as string) as person_name
                 -- Keep the western starndard name even if the namestyle is eastern.
             -- NAMESTYLE
             --TITLE

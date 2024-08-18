@@ -15,14 +15,14 @@ with
         select *
         from sales
         left join territories
-            on sales.FK_TERRITORY = territories.pk_territory
+            on sales.fk_territory = territories.pk_territory
         left join vendors
             on sales.fk_vendor = vendors.pk_vendor
     )
     , aggregation as (
         select
             vendor_name as vendor 
-            , COUNTRY_NAME as country
+            , country_name as country
             , avg(net_total_sold) as avg_total_sold
             , sum(net_total_sold) as total_sold
         from joined

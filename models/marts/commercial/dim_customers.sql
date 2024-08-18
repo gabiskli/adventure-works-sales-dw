@@ -13,10 +13,10 @@ with
     )
     , joined as (
         select
-            customers.PK_CUSTOMER
-            , customers.FK_PERSON
-            , customers.FK_STORE
-            , stores.STORE_NAME
+            customers.pk_customer
+            , customers.fk_person
+            , customers.fk_store
+            , stores.store_name
             , people.person_name
         from customers
         left join stores

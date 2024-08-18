@@ -52,10 +52,10 @@ models:
       - name: QUANTITY
         description: Quantity ordered per product.
 
-      - name: TOTAL_SOLD
+      - name: GROSS_SALES
         description: Per product subtotal. Computed as unit_price * quantity.
 
-      - name: NET_TOTAL_SOLD
+      - name: NET_SALES
         description: Per product subtotal. Computed as unit_price * (1 - discount) * quantity.
 
       - name: PRORATED_FREIGHT
@@ -64,7 +64,7 @@ models:
       - name: PRORATED_TAXES
         description: Tax amount prorated by total order amount.
 
-      - name: SALES_TAXES_FREIGHT
+      - name: TOTAL_SALES
         description: >
          Total due from customer.
          Computed as net_total_sold + prorated_taxes + prorated_freight.
@@ -78,3 +78,8 @@ models:
         description: >
           Time in days from creation of the sales order and the delivery of the product.
           Calculated as the difference in days from (dt_order - dt_due).
+
+      - name: DISCOUNT_CATEGORY
+        description: >
+          Categorization of the discount column. It separates data into fours categories:
+            No discount, Up to 10%, From 10% unitl 30% and Greater than 30%. 
