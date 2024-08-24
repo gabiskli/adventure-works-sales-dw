@@ -22,6 +22,9 @@ with
             , customers.fk_store
             , stores.store_name
             , people.person_name
+            , rfm.r_score
+            , rfm.f_score
+            , rfm.m_score
             , rfm.rfm_segment
         from customers
         left join stores
@@ -47,6 +50,9 @@ with
             There are some stores that have also a person associated with it. In this cases I got the person name as the
             customer name, as the store name was already considered when the person fk is null.*/
             , rfm_segment
+            , r_score
+            , f_score
+            , m_score
         from joined
     )
 select *

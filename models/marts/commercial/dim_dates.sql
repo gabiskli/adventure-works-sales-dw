@@ -10,17 +10,19 @@ with raw_dates as (
     , selected_columns as (
         select
             date_day as pk_date
+            , format_datetime('%Y-%m', date_day) as year_and_month
             , day_of_week_iso as day_of_week_number --Monday = 1 and Sunday = 7
             , day_of_week_name as day_of_week
             , day_of_week_name_short as day_of_week_short
-            , day_of_month
-            , Dday_of_year
+            , day_of_month as day_of_month
+            , day_of_year as day_of_year 
             , iso_week_start_date as week_start_date
-            , is_week_end_date as week_end_sate
-            , month_of_year
-            , month_name
-            , month_name_short
-            , year_number
+            , iso_week_end_date as week_end_sate
+            , month_of_year as month_of_year
+            , month_name as month_name
+            , month_name_short as month_name_short
+            , year_number as year_number 
+            , quarter_of_year as quarter
             --, DAY_OF_WEEK
             --, WEEK_START_DATE
             --, WEEK_END_DATE
@@ -28,7 +30,6 @@ with raw_dates as (
             --, ISO_WEEK_OF_YEAR
             --, MONTH_START_DATE
             --, MONTH_END_DATE
-            --, QUARTER_OF_YEAR
             --, QUARTER_START_DATE
             --, QUARTER_END_DATE
             --PRIOR_DATE_DAY

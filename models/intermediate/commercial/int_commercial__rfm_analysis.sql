@@ -44,6 +44,9 @@ with
         select
             fk_customer
             , rfm_score
+            , r_score
+            , f_score
+            , m_score
             , case 
                 when rfm_score = 555 then 'high value'
                 when r_score = 1 then 'lost customer'

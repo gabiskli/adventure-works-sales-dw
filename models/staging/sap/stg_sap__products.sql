@@ -7,9 +7,8 @@ with
             , cast(class as string) as product_class
             , cast(style as string) as product_style
             , case
-                when discontinueddate is null or sellenddate is null then false
-                when discontinueddate is not null or sellenddate is not null then true
-                else null
+                when sellenddate is not null or discontinueddate is not null then true
+                when sellenddate is null or discontinueddate is null then false
             end as is_discontinued
             , case
                 when cast (productline as string) is null then 'O' -- Indicate "Other", products that are not bicycles.
@@ -32,6 +31,7 @@ with
             --PRODUCTMODELID
             --SELLSTARTDATE
             --SELLENDDATE
+            --DISCONTINUEDDATE
             -- ROWGUID
         from {{ source('sap', 'product') }}
         where finishedgoodsflag = True --Selects only products that can be sold by Adventure Works.
