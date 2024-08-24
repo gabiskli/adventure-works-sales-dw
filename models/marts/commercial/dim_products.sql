@@ -28,7 +28,13 @@ with
                 when join_categories.category_name is null then 'Other'
                 else join_categories.category_name
             end as product_category
-            , products.product_line
+            , case 
+                when products.product_line = 'R' then 'Road'
+                when products.product_line = 'T' then 'Touring'
+                when products.product_line = 'M' then 'Mountain'
+                when products.product_line = 'S' then 'Standard'
+                else 'Other'
+            end as product_line
             , products.is_discontinued
         from products
         left join join_categories
