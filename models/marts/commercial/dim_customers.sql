@@ -50,6 +50,9 @@ with
             There are some stores that have also a person associated with it. In this cases I got the person name as the
             customer name, as the store name was already considered when the person fk is null.*/
             , rfm_segment
+            , r_score
+            , f_score
+            , m_score
         from joined
     )
 select *
