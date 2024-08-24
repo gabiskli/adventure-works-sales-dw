@@ -22,6 +22,9 @@ with
             , customers.fk_store
             , stores.store_name
             , people.person_name
+            , rfm.r_score
+            , rfm.f_score
+            , rfm.m_score
             , rfm.rfm_segment
         from customers
         left join stores
