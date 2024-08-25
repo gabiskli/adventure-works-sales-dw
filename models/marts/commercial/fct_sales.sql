@@ -32,7 +32,6 @@ with
             , int_sales.fk_vendor
             , int_sales.fk_order
             , int_sales.dt_order
-            , int_sales.dt_due
             , int_sales.status
             , int_sales.order_type
             , int_sales.card_type

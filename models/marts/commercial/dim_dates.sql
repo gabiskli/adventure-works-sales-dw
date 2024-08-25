@@ -15,9 +15,7 @@ with raw_dates as (
             , day_of_week_name as day_of_week
             , day_of_week_name_short as day_of_week_short
             , day_of_month as day_of_month
-            , day_of_year as day_of_year 
-            , iso_week_start_date as week_start_date
-            , iso_week_end_date as week_end_sate
+            , day_of_year as day_of_year
             , month_of_year as month_of_year
             , month_name as month_name
             , month_name_short as month_name_short

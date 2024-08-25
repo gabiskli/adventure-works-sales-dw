@@ -10,10 +10,7 @@ with
                 when sellenddate is not null or discontinueddate is not null then true
                 when sellenddate is null or discontinueddate is null then false
             end as is_discontinued
-            , case
-                when cast (productline as string) is null then 'O' -- Indicate "Other", products that are not bicycles.
-                else productline
-            end as product_line
+            , cast(productline as string) as product_line
             --MAKEFLAG  -- this lines won't be used
             --PRODUCTNUMBER
             --MODIFIEDDATE
