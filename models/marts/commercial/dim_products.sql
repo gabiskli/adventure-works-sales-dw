@@ -29,10 +29,10 @@ with
                 else join_categories.category_name
             end as product_category
             , case 
-                when products.product_line = 'R' then 'Road'
-                when products.product_line = 'T' then 'Touring'
-                when products.product_line = 'M' then 'Mountain'
-                when products.product_line = 'S' then 'Standard'
+                when products.product_line like '%R%' then 'Road'
+                when products.product_line like  '%T%' then 'Touring'
+                when products.product_line like  '%M%' then 'Mountain'
+                when products.product_line like  '%S%' then 'Standard'
                 else 'Other'
             end as product_line
             , products.is_discontinued
