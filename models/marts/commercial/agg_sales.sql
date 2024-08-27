@@ -26,7 +26,8 @@ with
             , avg(net_sales) as avg_total_sold
             , sum(net_sales) as total_sold
         from joined
-        where vendor_name is not null --this are sales done online, and won't be considered
+        where vendor_name is not null 
+            -- when vendor name is null then we have sales done online, and won't be considered
         group by country, vendor
     )
 select *
