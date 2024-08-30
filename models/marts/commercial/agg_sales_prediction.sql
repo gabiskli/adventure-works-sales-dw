@@ -31,12 +31,10 @@ with
             , country_name as country
             , customer_name as store
             , product_name as product
-            , case
-                when customer_type = 'Store' then sum(quantity) 
-                when customer_type = 'Online' then 0
-            end as units_sold
+            , sum(quantity) as units_sold
         from joined
-        group by country, store, product, date_month, customer_type
+        where customer_type = 'Store' and is_discontinued = False
+        group by date_month, product, store, country
     )
 select *
 from aggregation

@@ -4,68 +4,69 @@ models:
   - name: fct_sales
     description: >
       Adventure Works sales fact table.
+      This table cointains metrics and information about sales in ADW.
+      Its smaller granularity is a line of an order.
+      There is also credit card and sales reason information.
+
     columns:
       
-      - name: PK_ORDER_DETAIL
+      - name: pk_order_detail
         description: Primary key for the fact sales table. Indicates each line of an order.
         tests:
           - unique
           - not_null
 
-      - name: FK_CUSTOMER
+      - name: fk_customer
         description: Foreign key for the customer dimension.
 
-      - name: FK_TERRITORY
+      - name: fk_territory
         description: Foreign key for the territory dimension.
 
-      - name: FK_PRODUCT
+      - name: fk_product
         description: Foreign key for the product dimension.
       
-      - name: FK_ORDER
+      - name: fk_order
         description: Foreign key for the order. This can be used for aggregations.
 
-      - name: DT_ORDER
+      - name: dt_order
         description: Date the sales order was created.
 
-      - name: DT_DUE
-        description: Date the order is due to the customer.
-
-      - name: STATUS
+      - name: status
         description: >
           Order current status. 
-          1 = In process; 2 = Approved; 3 = Backordered; 
-          4 = Rejected; 5 = Shipped; 6 = Cancelled
+          Can assume one of the following values: 
+            In process, Approved, Backordered, Rejected, Shipped, Cancelled
 
-      - name: CARD_TYPE
+      - name: card_type
         description: Credit card name.
 
-      - name: REASON_NAME
+      - name: reason_name
         description: Sales reason description.
 
-      - name: UNIT_PRICE
+      - name: unit_price
         description: Selling price of a single product.
 
-      - name: DISCOUNT
+      - name: discount
         description: Discount percent applied to the unit_price.
 
-      - name: QUANTITY
+      - name: quantity
         description: Quantity ordered per product.
 
-      - name: GROSS_SALES
+      - name: gross_sales
         description: Per product subtotal. Computed as unit_price * quantity.
 
-      - name: NET_SALES
+      - name: net_sales
         description: Per product subtotal. Computed as unit_price * (1 - discount) * quantity.
 
-      - name: TOTAL_SALES
+      - name: total_sales
         description: >
          Total due from customer.
          Computed as net_total_sold + prorated_taxes + prorated_freight.
 
-      - name: TICKET
+      - name: ticket
         description: >
           Mean value made in a purchase.
           Calculated as sum of net_total_sold divided by number of lines in an order.
       
-      - name: DISCOUNT_CATEGORY
+      - name: discount_category
         description: Categorization of how much discount the order had.
