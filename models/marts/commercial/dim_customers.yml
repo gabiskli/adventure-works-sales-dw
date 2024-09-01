@@ -4,20 +4,23 @@ models:
   - name: dim_customers
     description: >
       Adventure Works customer dimension table. 
+      Has general information about customers, including its type and a segment base on an RFM analysis done.
+      There are two type of customers: people and stores.
+      Stores are reseller of ADW products and they buy for Vendors, and people are individuals that buys online.
     columns:
-      - name: PK_CUSTOMER
+      - name: pk_customer
         description: Primary key from the product dimension table.
           - unique
           - not_null
               
-      - name: CUSTOMER_NAME
+      - name: customer_name
         description: >
-          Customer name. 
-          There are two type of customer, stores and people. And there is people associated with stores. 
+          Customers name.
+          If the customer is a Store this will be the stores name. 
         tests:
           - not_null
 
-      - name: CUSTOMER_TYPE
+      - name: customer_type
         description: Customer type, it must be either "Person" or "Store".
         tests:
           - accepted_values:
@@ -25,5 +28,20 @@ models:
                 - "Person"
                 - "Store"
                 
-      - name: RFM_SEGMENT
+      - name: rfm_segment
         description: Customer categorization acording to the RFM analysis. 
+
+      - name: r_score
+        description: >
+          Recency score from RFM analysis. It states how recent the customer has bought from ADW.
+          This score goes from 1 to 5, and the greater the value the more recent has been the sale.
+
+      - name: f_score
+        description: >
+          Frequency score from RFM analysis. IT states how frequent the customer buys from ADW.
+          This score goes from 1 to 5, and the greater the value the more frequent it buys.
+          
+      - name: m_score
+        description: >
+          Monetary Value score from RFM analysis. It states how much the customer spend in purchases.
+          This score goes from 1 to 5, and the greater the value more money it spends.

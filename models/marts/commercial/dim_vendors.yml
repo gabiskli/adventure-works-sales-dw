@@ -4,17 +4,24 @@ models:
   - name: dim_vendors
     description: >
       Adventure Works sales person (vendors) dimension table.
+      It has information about Vendors names, and their sales goal for the current year. As well as year to date sales.
     columns:
-      - name: PK_VENDOR
+      - name: pk_vendor
         description: Primary key from the vendors dimension table.
         tests:
           - unique
           - not_null
               
-      - name: VENDOR_NAME
+      - name: vendor_name
         description: Name of the vendor.
       
-      - name: IS_VENDOR_GOAL_MET
+      - name: vendor_sales_goal
+        description: The current year sales goal for each vendor. If the vendor has no goal, this will be null.
+
+      - name: vendor_sales
+        description: The year to date sales of the vendor. 
+      
+      - name: is_vendor_goal_met
         description: >
           Flag that indicated if the specific vendor has met his sales goal yet. 
-          Is done by comparing the "expected_yearly_sales" and "vendor_sales_ytd" columns. 
+          Is done by comparing the "vendor_sales_goal" and "vendor_sales" columns. 

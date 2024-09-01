@@ -18,7 +18,22 @@ models:
           For recency: the greater the score more recently hase the customer bought.
           For frequency: the greater the score more often the customer buys.
           For monetary value: the greater the score more has the customer spend.
-          
+
+      - name: r_score
+        description: >
+          Recency score from RFM analysis. It states how recent the customer has bought from ADW.
+          This score goes from 1 to 5, and the greater the value the more recent has been the sale.
+
+      - name: f_score
+        description: >
+          Frequency score from RFM analysis. IT states how frequent the customer buys from ADW.
+          This score goes from 1 to 5, and the greater the value the more frequent it buys.
+
+      - name: m_score
+        description: >
+          Monetary Value score from RFM analysis. It states how much the customer spend in purchases.
+          This score goes from 1 to 5, and the greater the value more money it spends.
+
       - name: rfm_segment
         description: >
           Based on the "rfm_score" the customers have been segmented in the following way:

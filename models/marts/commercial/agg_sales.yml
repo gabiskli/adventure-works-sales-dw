@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: agg_sales
+    description: >
+      Adventure Works aggregated sales table.
+      This is an aggregation to calculate total and average sales by country and vendor.
+      All sales that were not done trough a vendor (online sales) were not included.
+
+    columns:
+      
+      - name: vendor
+        description: Name of the vendor
+
+      - name: country
+        description: Country name
+
+      - name: avg_total_sold
+        description: Average net sales value
+
+      - name: total_sold
+        description: Sum of net sales
+      

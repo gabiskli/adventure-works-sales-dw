@@ -7,13 +7,13 @@ models:
       Created for joining sales reason per order id. 
       One order can have more than one reason, here we will consider only one of them. 
     columns:
-      - name: FK_ORDER
+      - name: fk_order
         description: Foreign key for the sales order header table.
         tests:
           - not_null
           - unique 
 
-      - name: REASON_NAME
+      - name: reason_name
         description: >
           Sales reason name. Regrouped sales reason and type.
           Joined reason type 'Marketing' in one group.

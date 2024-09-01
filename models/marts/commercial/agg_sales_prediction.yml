@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: agg_sales_prediction
+    description: >
+      Adventure Works aggregated sales table to be used in sales prediction project.
+      This is an aggregation to calculate the total quantity sold per product, store and country per month.
+      Again, all sales that were done to customer typed as 'Person' were not included.
+      As well as products that were discontinued.
+
+    columns:
+      
+      - name: date_month
+        description: The month relative the that group of sales.
+
+      - name: country
+        description: Country name.
+
+      - name: store
+        description: Name of the store that made the purchase.
+
+      - name: product
+        description: Name of the product that was sold.
+      
+      - name: units_sold
+        description: >
+          Is calculated as the sum of quantity. 
+          It represents the total amount of product that was sold in determined month, country and store.
+      

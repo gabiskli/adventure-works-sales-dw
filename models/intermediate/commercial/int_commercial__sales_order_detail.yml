@@ -6,80 +6,80 @@ models:
       Adventure Works saler order detail intermediate table.
       Created for joining order, orde details and credit card tables and calculate relevant business metrics. 
     columns:
-      - name: PK_ORDER_DETAIL
+      - name: pk_order_detail
         description: Primary key from the sales order detail table.
         tests:
           - unique
           - not_null
               
-      - name: FK_ORDER
+      - name: fk_order
         description: >
           Foreign key for the sales order header table. 
           This represents an order. While the pk_order_detail represents a line in the order.
         tests:
           - not_null
 
-      - name: FK_CUSTOMER
+      - name: fk_customer
         description: Foreign key for the customer dimension.
 
-      - name: FK_TERRITORY
+      - name: fk_territory
         description: Foreign key for the territory dimension.
 
-      - name: FK_PRODUCT
+      - name: fk_product
         description: Foreign key for the product dimension.
 
-      - name: DT_ORDER
+      - name: dt_order
         description: Date the sales order was created.
 
-      - name: DT_DUE
+      - name: dt_due
         description: Date the order is due to the customer.
 
-      - name: STATUS
+      - name: status
         description: >
           Order current status. 
           1 = In process; 2 = Approved; 3 = Backordered; 
           4 = Rejected; 5 = Shipped; 6 = Cancelled
 
-      - name: CARD_TYPE
+      - name: card_type
         description: Credit card name.
 
-      - name: UNIT_PRICE
+      - name: unit_price
         description: Selling price of a single product.
 
-      - name: DISCOUNT
+      - name: discount
         description: Discount percent applied to the unit_price.
 
-      - name: QUANTITY
+      - name: quantity
         description: Quantity ordered per product.
 
-      - name: GROSS_SALES
+      - name: gross_sales
         description: Per product subtotal. Computed as unit_price * quantity.
 
-      - name: NET_SALES
+      - name: net_sales
         description: Per product subtotal. Computed as unit_price * (1 - discount) * quantity.
 
-      - name: PRORATED_FREIGHT
+      - name: prorated_freight
         description: Shipping cost prorated by order line.
 
-      - name: PRORATED_TAXES
+      - name: prorated_taxes
         description: Tax amount prorated by total order amount.
 
-      - name: TOTAL_SALES
+      - name: total_sales
         description: >
          Total due from customer.
          Computed as net_total_sold + prorated_taxes + prorated_freight.
 
-      - name: TICKET
+      - name: ticket
         description: >
           Mean value made in a purchase.
           Calculated as sum of net_total_sold divided by number of lines in an order.
 
-      - name: EXPECTED_LEAD_TIME
+      - name: expected_lead_time
         description: >
           Time in days from creation of the sales order and the delivery of the product.
           Calculated as the difference in days from (dt_order - dt_due).
 
-      - name: DISCOUNT_CATEGORY
+      - name: discount_category
         description: >
           Categorization of the discount column. It separates data into fours categories:
             No discount, Up to 10%, From 10% unitl 30% and Greater than 30%. 

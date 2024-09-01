@@ -33,9 +33,8 @@ with
             , product_name as product
             , sum(quantity) as units_sold
         from joined
-        where customer_type = 'Store' 
-            -- When customer type is different from store we have online sales for individuals
-        group by country, store, product, date_month
+        where customer_type = 'Store' and is_discontinued = False
+        group by date_month, product, store, country
     )
 select *
 from aggregation

@@ -4,28 +4,42 @@ models:
   - name: dim_products
     description: >
       Adventure Works product dimension table. 
+      It contains information about products sold by ADW.
       There is a categorization of discotinued products in the column is_discontinued.
       And the category name column was filled with "Other" when there were null values.
     columns:
-      - name: PK_PRODUCT
+      - name: pk_product
         description: Primary key from the product dimension table.
           - unique
           - not_null
               
-      - name: PRODUCT_NAME
+      - name: product_name
         description: Product name.
         tests:
           - not_null
       
-      - name: PRODUCT_CATEGORY
-        description: Product category name.
+      - name: product_category
+        description: >
+           Product category name.
+           Categories can be one of the following: Bike, Components, Clothing, Accessories or Other.
+           Category "Other" was included on products that were not categorized. 
         tests:
           - not_null:
               config:
                 severity: warn
+      
+      - name: product_line
+        description: >
+          Product Line. 
+          This is mostly about type of bikes, and there are some other products related to it that are categorized this way.
+          It can assume one of the following values: Road, Touring, Standard, Moutain, Other.
+          Category "Other" was added for products without a product line. This was mostly accessories.
 
-      - name: IS_DISCONTINUED
-        description: Flag that indicates if the product is still being sold.
+      - name: is_discontinues
+        description: >
+          Flag that indicates if the product is still being sold.
+          It depends both on the 'sellenddate' and 'discontinueddate' columns. 
+          If they are not null then this indicates the product was discontinued and is not being sold anymore.
         tests:
           - not_null:
               config:
