@@ -37,6 +37,3 @@ Marts tables are materialized as tables.
 # Data Sources
 
 The data sources were loaded from seeds files that were in the [original repository](https://github.com/techindicium/academy-dbt) that was forked to make this one. Instruction on how to load table into the database are int the readme file of the presented repository.
-
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
