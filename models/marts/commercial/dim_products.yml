@@ -35,7 +35,7 @@ models:
           It can assume one of the following values: Road, Touring, Standard, Moutain, Other.
           Category "Other" was added for products without a product line. This was mostly accessories.
 
-      - name: is_discontinues
+      - name: is_discontinued
         description: >
           Flag that indicates if the product is still being sold.
           It depends both on the 'sellenddate' and 'discontinueddate' columns. 
